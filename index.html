@@ -12,93 +12,95 @@
 </head>
 
 <body>
+  <main>
+    <!-- New game menu start -->
+    <section class="new-game-menu">
+      <header class="menu-header">
+        <div class="menu-xo">
+          <img src="./assets/logo.svg" alt="x and o logo">
+        </div>
+      </header>
 
-  <!-- New game menu start -->
+      <article class="menu-mark">
+        <div class="menu-mark-container">
+          <h3>Pick player 1's mark</h3>
+          <p>Remember: X goes first</p>
+          <div class="mark-choice-buttons">
+            <button class="x-choice">
+              <button class="o-choice"></button>
+            </button>
+          </div>
+        </div>
+        <button class="new-cpu">New Game (vs CPU)</button>
+        <button class="new-player">New Game (vs player)</button>
+      </article>
+    </section>
 
-  <header class="menu-header">
-    <div class="menu-xo">
-      <img src="./assets/logo.svg" alt="x and o logo">
-    </div>
-  </header>
+    <!-- New game menu end -->
 
-  <article class="menu-mark">
-    <div class="menu-mark-container">
-      <h3>Pick player 1's mark</h3>
-      <p>Remember: X goes first</p>
-      <div class="mark-choice-buttons">
-        <button class="x-choice">
-          <button class="o-choice"></button>
-        </button>
-      </div>
-    </div>
-    <button class="new-cpu">New Game (vs CPU)</button>
-    <button class="new-player">New Game (vs player)</button>
-  </article>
+    <!-- Game board start -->
 
-  <!-- New game menu end -->
+    <section class="in-game">
+      <header class="game-header">
+        <div class="game-xo">
+          <img src="./assets/logo.svg" alt="x and o logo">
+        </div>
+        <div class="game-turn"><span><!-- x/o icon --></span> turn</div>
+        <button class="restart"><img src="./assets/icon-restart.svg" alt="restart symbol"></button>
+      </header>
 
-  <!-- Game board start -->
+      <article class="game-board">
+        <button class="board-cell"></button>
+        <button class="board-cell"></button>
+        <button class="board-cell"></button>
+        <button class="board-cell"></button>
+        <button class="board-cell"></button>
+        <button class="board-cell"></button>
+        <button class="board-cell"></button>
+        <button class="board-cell"></button>
+        <button class="board-cell"></button>
+      </article>
 
-  <header class="game-header">
-    <div class="game-xo">
-      <img src="./assets/logo.svg" alt="x and o logo">
-    </div>
-    <div class="game-turn"><span><!-- x/o icon --></span> turn</div>
-    <button class="restart"><img src="./assets/icon-restart.svg" alt="restart symbol"></button>
-  </header>
+      <article class="game-state">
+        <div class="x-score">X
+          <!-- label will be either (You), (CPU), P1 or P2 -->
+          <span class="game-state-x-label">(You)</span>
+          <span class="game-state-x-score"><!-- Your score --></span>
+        </div>
 
-  <article class="game-board">
-    <button class="board-cell"></button>
-    <button class="board-cell"></button>
-    <button class="board-cell"></button>
-    <button class="board-cell"></button>
-    <button class="board-cell"></button>
-    <button class="board-cell"></button>
-    <button class="board-cell"></button>
-    <button class="board-cell"></button>
-    <button class="board-cell"></button>
-  </article>
+        <div class="ties-score">Ties
+          <span class="game-state-ties-score"><!-- Ties score --></span>
+        </div>
 
-  <article class="game-state">
-    <div class="x-score">X
-      <!-- label will be either (You), (CPU), P1 or P2 -->
-      <span class="game-state-x-label">(You)</span>
-      <span class="game-state-x-score"><!-- Your score --></span>
-    </div>
+        <div class="o-score">O
+          <!-- label will be either (You), (CPU), P1 or P2 -->
+          <span class="game-state-o-label">(CPU)</span>
+          <span class="game-state-o-score"><!-- CPU score --></span>
+        </div>
+      </article>
 
-    <div class="ties-score">Ties
-      <span class="game-state-ties-score"><!-- Ties score --></span>
-    </div>
+      <article class="game-result">
+        <h3 class="game-result-player-lost">Oh no, you lost</h3>
+        <h3 class="game-result-player-won">You won!</h3>
+        <h3 class="game-result-multi">Player
+          <span class="game-result-multi-winner"><!-- 1/2 --></span>wins!
+        </h3>
 
-    <div class="o-score">O
-      <!-- label will be either (You), (CPU), P1 or P2 -->
-      <span class="game-state-o-label">(CPU)</span>
-      <span class="game-state-o-score"><!-- CPU score --></span>
-    </div>
-  </article>
+        <div class="game-result-icon-winner">
+          <img src="./assets/icon-x.svg" alt="winner icon"><!-- x/o icon -->
+          <h1> takes the round</h1>
+        </div>
+        <h1 class="game-result-tied">Round tied</h1>
+        <h1 class="game-result-restart">Restart game?</h1>
 
-  <article class="game-result">
-    <h3 class="game-result-player-lost">Oh no, you lost</h3>
-    <h3 class="game-result-player-won">You won!</h3>
-    <h3 class="game-result-multi">Player
-      <span class="game-result-multi-winner"><!-- 1/2 --></span>wins!
-    </h3>
-
-    <div class="game-result-icon-winner">
-      <img src="./assets/icon-x.svg" alt="winner icon"><!-- x/o icon -->
-      <h1> takes the round</h1>
-    </div>
-    <h1 class="game-result-tied">Round tied</h1>
-    <h1 class="game-result-restart">Restart game?</h1>
-
-    <button class="game-result-quit-button">Quit</button>
-    <button class="game-result-next-round-button">Next round</button>
-    <button class="game-result-no-restart-button">No, cancel</button>
-    <button class="game-result-yes-restart-button">Yes, restart</button>
-  </article>
-
-  <!-- Game board end -->
-
+        <button class="game-result-quit-button">Quit</button>
+        <button class="game-result-next-round-button">Next round</button>
+        <button class="game-result-no-restart-button">No, cancel</button>
+        <button class="game-result-yes-restart-button">Yes, restart</button>
+      </article>
+    </section>
+    <!-- Game board end -->
+  </main>
   <script src="./app.js"></script>
 </body>
 

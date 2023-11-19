@@ -1,5 +1,10 @@
+:root {
+    --bg-color: #1A2A33;
+}
+
 html {
     box-sizing: border-box;
+    background-color: var(--bg-color);
 }
 
 *,
@@ -29,4 +34,21 @@ h4,
 h5,
 h6 {
     overflow-wrap: break-word;
+}
+
+main {
+    margin: 7.44rem 1.5rem 7.44rem 1.5rem;
+}
+
+.in-game {
+    display: none;
+}
+
+.new-game-menu {
+    display: grid;
+}
+
+.menu-header {
+    width: 4.5rem;
+    height: 2rem;
 }
