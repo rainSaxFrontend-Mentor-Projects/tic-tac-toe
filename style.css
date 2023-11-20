@@ -44,19 +44,14 @@ h6 {
 }
 
 main {
-    margin: 7.44rem 1.5rem 7.44rem 1.5rem;
+    margin: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* height: 100vh; */
-}
-
-.in-game {
-    display: none;
 }
 
 .new-game-menu {
-    display: grid;
+    display: none;
     justify-items: center;
     text-align: center;
     grid-gap: 2rem;
@@ -65,6 +60,7 @@ main {
 .menu-header {
     width: clamp(4.5rem, 4.324rem + 0.751vw, 5rem);
     height: 2rem;
+    margin-top: 7.44rem;
 }
 
 .menu-mark-container {
@@ -165,7 +161,89 @@ main {
     cursor: pointer;
 }
 
+.in-game {
+    display: none;
+    grid-gap: 4rem;
+}
 
+.game-header {
+    display: grid;
+    grid-template-columns: repeat(3, 6rem);
+    grid-gap: 1.25rem;
+    align-items: center;
+}
+
+.game-xo {
+    width: 4.5rem;
+}
+
+.game-turn {
+    height: 2.5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--bg-semi-dark);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.05469rem;
+    text-transform: uppercase;
+    color: var(--bg-silver);
+    border: none;
+    border-radius: 0.3125rem;
+    box-shadow: 0px -4px 0px 0px #10212A inset;
+}
+
+.restart {
+    justify-self: end;
+    background-color: var(--bg-silver);
+    border-radius: 0.625rem;
+    border: none;
+    box-shadow: 0px -4px 0px 0px #6B8997 inset;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.restart>img {
+    width: 65%;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1.25rem;
+}
+
+.board-cell {
+    width: 6rem;
+    height: 6rem;
+    background-color: var(--bg-semi-dark);
+    border: none;
+    border-radius: 0.625rem;
+    box-shadow: 0px -8px 0px 0px #10212A inset;
+
+}
+
+.game-state {
+    display: flex;
+    justify-content: space-between;
+}
+
+.score {
+    width: 6rem;
+    height: 4rem;
+    text-align: center;
+}
+
+.game-result {
+    display: none;
+}
+
+.visible {
+    display: grid;
+}
 
 @media (min-width: 768px) {
     main {
