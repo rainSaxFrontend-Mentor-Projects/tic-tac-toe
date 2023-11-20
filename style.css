@@ -3,7 +3,9 @@
     --bg-semi-dark: #1F3641;
     --bg-silver: #A8BFC9;
     --bg-yellow: #F2B137;
+    --bg-yellow-hover: #FFC860;
     --bg-light-blue: #31C3BD;
+    --bg-light-blue-hover: #65E9E4;
 }
 
 html {
@@ -112,6 +114,7 @@ main {
 }
 
 .x-choice:hover {
+    cursor: pointer;
     background-color: var(--bg-semi-dark);
 }
 
@@ -123,6 +126,10 @@ main {
     display: grid;
     align-items: center;
     justify-content: center;
+}
+
+.o-choice:hover {
+    cursor: pointer;
 }
 
 .new {
@@ -143,9 +150,19 @@ main {
     box-shadow: 0px -8px 0px 0px #CC8B13 inset;
 }
 
+.new.vs-cpu:hover {
+    background-color: var(--bg-yellow-hover);
+    cursor: pointer;
+}
+
 .new.vs-player {
     background-color: var(--bg-light-blue);
     box-shadow: 0px -8px 0px 0px #118C87 inset;
+}
+
+.new.vs-player:hover {
+    background-color: var(--bg-light-blue-hover);
+    cursor: pointer;
 }
 
 
