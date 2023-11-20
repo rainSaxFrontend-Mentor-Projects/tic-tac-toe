@@ -24,7 +24,7 @@ html {
 
 img {
     display: block;
-    /* width: 100%; */
+    width: 100%;
 }
 
 button {
@@ -61,7 +61,7 @@ main {
 }
 
 .menu-header {
-    width: 4.5rem;
+    width: clamp(4.5rem, 4.324rem + 0.751vw, 5rem);
     height: 2rem;
 }
 
@@ -94,27 +94,29 @@ main {
     grid-template-columns: 1fr 1fr;
     align-items: center;
     margin-top: 1.5rem;
+    border-radius: 0.625rem;
+    height: 4.5rem;
+    background-color: var(--bg-color);
     margin-bottom: 1rem;
+    padding: .5rem;
 }
 
 .x-choice {
-    height: 4.5rem;
-    grid-column: 1 / span 2;
-    grid-row: 1;
     display: grid;
-    grid-template-columns: .90fr 1.1fr;
     align-items: center;
     justify-items: center;
-    border: none;
+    height: 3.375rem;
     border-radius: 0.625rem;
-    background-color: var(--bg-color);
+    background: transparent;
+    border: none;
+}
+
+.x-choice:hover {
+    background-color: var(--bg-semi-dark);
 }
 
 .o-choice {
     height: 3.375rem;
-    grid-column: 2 / span 1;
-    grid-row: 1;
-    transform: translateX(-0.5rem);
     background-color: var(--bg-silver);
     border: none;
     border-radius: 0.625rem;
