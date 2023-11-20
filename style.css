@@ -1,10 +1,15 @@
 :root {
     --bg-color: #1A2A33;
+    --bg-semi-dark: #1F3641;
+    --bg-silver: #A8BFC9;
+    --bg-yellow: #F2B137;
+    --bg-light-blue: #31C3BD;
 }
 
 html {
     box-sizing: border-box;
     background-color: var(--bg-color);
+    font-family: 'Outfit', sans-serif;
 }
 
 *,
@@ -19,7 +24,7 @@ html {
 
 img {
     display: block;
-    width: 100%;
+    /* width: 100%; */
 }
 
 button {
@@ -38,6 +43,10 @@ h6 {
 
 main {
     margin: 7.44rem 1.5rem 7.44rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* height: 100vh; */
 }
 
 .in-game {
@@ -46,9 +55,93 @@ main {
 
 .new-game-menu {
     display: grid;
+    justify-items: center;
+    text-align: center;
+    grid-gap: 2rem;
 }
 
 .menu-header {
     width: 4.5rem;
     height: 2rem;
+}
+
+.menu-mark-container {
+    background-color: var(--bg-semi-dark);
+    padding: 1.5rem;
+    box-shadow: 0px -8px 0px 0px #10212A inset;
+    border-radius: 0.9375rem;
+    margin-bottom: 2.5rem;
+}
+
+.menu-mark-prompt {
+    color: var(--bg-silver);
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: .0625rem;
+    font-weight: 700;
+}
+
+.menu-mark-container p {
+    color: var(--bg-silver);
+    opacity: .5;
+    text-transform: uppercase;
+    font-size: .875rem;
+    letter-spacing: 0.05469rem;
+}
+
+.menu-icon-button-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.x-choice {
+    height: 4.5rem;
+    grid-column: 1 / span 2;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: .90fr 1.1fr;
+    align-items: center;
+    justify-items: center;
+    border: none;
+    border-radius: 0.625rem;
+    background-color: var(--bg-color);
+}
+
+.o-choice {
+    height: 3.375rem;
+    grid-column: 2 / span 1;
+    grid-row: 1;
+    transform: translateX(-0.5rem);
+    background-color: var(--bg-silver);
+    border: none;
+    border-radius: 0.625rem;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.new {
+    width: 100%;
+    height: 3.5rem;
+    border-radius: 0.9375rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.0625rem;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.new.vs-cpu {
+    margin-bottom: 1.25rem;
+    background-color: var(--bg-yellow);
+    box-shadow: 0px -8px 0px 0px #CC8B13 inset;
+}
+
+.new.vs-player {
+    background-color: var(--bg-light-blue);
+    box-shadow: 0px -8px 0px 0px #118C87 inset;
 }
