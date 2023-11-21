@@ -20,12 +20,12 @@ document.querySelector(".o-choice").addEventListener("click", function () {
 
 document.querySelector(".vs-cpu").addEventListener("click", function () {
     // console.log("starting vs cpu game with p1 as: " + p1Mark)
-    makeBoard();
+    makeBoard("cpu");
 })
 
 document.querySelector(".vs-player").addEventListener("click", function () {
     // console.log("starting vs player game with p1 as: " + p1Mark)
-    makeBoard();
+    makeBoard("player");
 })
 
 for (let cell of cells) {
@@ -44,11 +44,31 @@ for (let cell of cells) {
             document.querySelector(".x-svg").classList.add("visible")
             document.querySelector(".o-svg").classList.remove("visible")
         }
+        // check for win conditions
     })
 }
 
-function makeBoard() {
+function makeBoard(versus) {
     document.querySelector(".new-game-menu").classList.remove("visible")
     document.querySelector(".in-game").classList.add("visible")
     document.querySelector(".x-svg").classList.add("visible")
+    if (versus == "cpu") {
+        // set the bottom to show this
+        // only setting for o since default is set for x
+        if (p1Mark == "o") {
+            document.querySelector(".game-state-x-label").textContent = "(CPU)"
+            document.querySelector(".game-state-o-label").textContent = "(YOU)"
+        }
+    }
+    else {
+        // set the bottom to show vs player
+        if (p1Mark == "x") {
+            document.querySelector(".game-state-x-label").textContent = "(P1)"
+            document.querySelector(".game-state-o-label").textContent = "(P2)"
+        }
+        else {
+            document.querySelector(".game-state-x-label").textContent = "(P2)"
+            document.querySelector(".game-state-o-label").textContent = "(P1)"
+        }
+    }
 }

@@ -25,8 +25,8 @@ html {
 }
 
 img {
-    display: block;
-    width: 100%;
+    /* display: block; */
+    /* width: 100%; */
 }
 
 button {
@@ -244,10 +244,50 @@ main {
     width: 6rem;
     height: 4rem;
     text-align: center;
+    border-radius: 0.9375rem;
+    padding: .5rem;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.05469rem;
+    color: var(--bg-color);
 }
 
-.game-result {
-    display: none;
+.score.x-score {
+    background-color: var(--bg-light-blue);
+}
+
+.score.ties-score {
+    background-color: var(--bg-silver);
+}
+
+.score.o-score {
+    background-color: var(--bg-yellow);
+}
+
+.game-state-x-score,
+.game-state-ties-score,
+.game-state-o-score {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.07813rem;
+}
+
+.game-over {
+    display: grid;
+    height: 14rem;
+    width: 100%;
+    position: absolute;
+    top: 25%;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: var(--bg-semi-dark);
+}
+
+.game-result-icon-winner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
 }
 
 .visible {
