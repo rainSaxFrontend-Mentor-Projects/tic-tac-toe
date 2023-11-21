@@ -6,6 +6,7 @@ var board = [
     ["", "", ""],
     ["", "", ""]
 ]
+var versus;
 
 // blank all the cells which are by default set to x for valid html
 var cells = document.querySelectorAll(".board-cell");
@@ -23,15 +24,17 @@ document.querySelector(".o-choice").addEventListener("click", function () {
     p1Mark = "o";
 })
 
-document.querySelector(".vs-cpu").addEventListener("click", function () {
-    // console.log("starting vs cpu game with p1 as: " + p1Mark)
-    makeBoard("cpu");
-})
-
-document.querySelector(".vs-player").addEventListener("click", function () {
-    // console.log("starting vs player game with p1 as: " + p1Mark)
-    makeBoard("player");
-})
+for (let newGame of document.querySelectorAll(".new")) {
+    newGame.addEventListener("click", function () {
+        if (this.classList.contains("vs-cpu")) {
+            versus = "cpu"
+        }
+        else {
+            versus = "player"
+        }
+        makeBoard(versus)
+    })
+}
 
 for (let i = 0; i < cells.length; i++) {
     cells[i].addEventListener("click", function () {
