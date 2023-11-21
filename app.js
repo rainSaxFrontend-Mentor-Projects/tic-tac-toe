@@ -31,13 +31,18 @@ document.querySelector(".vs-player").addEventListener("click", function () {
 for (let cell of cells) {
     cell.addEventListener("click", function () {
         if (turn == "x") {
-            // console.log("It's x's turn")
             this.firstElementChild.src = "./assets/icon-x.svg";
             turn = "o"
+            // change svg up top
+            document.querySelector(".x-svg").classList.remove("visible")
+            document.querySelector(".o-svg").classList.add("visible")
         }
         else {
             this.firstElementChild.src = "./assets/icon-o.svg";
             turn = "x"
+            // change svg up top
+            document.querySelector(".x-svg").classList.add("visible")
+            document.querySelector(".o-svg").classList.remove("visible")
         }
     })
 }
@@ -45,4 +50,5 @@ for (let cell of cells) {
 function makeBoard() {
     document.querySelector(".new-game-menu").classList.remove("visible")
     document.querySelector(".in-game").classList.add("visible")
+    document.querySelector(".x-svg").classList.add("visible")
 }
