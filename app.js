@@ -1,6 +1,11 @@
 // by default set p1 mark as x
 var p1Mark = "x";
 var turn = "x";
+var board = [
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""]
+]
 
 // blank all the cells which are by default set to x for valid html
 var cells = document.querySelectorAll(".board-cell");
@@ -28,22 +33,32 @@ document.querySelector(".vs-player").addEventListener("click", function () {
     makeBoard("player");
 })
 
-for (let cell of cells) {
-    cell.addEventListener("click", function () {
-        if (turn == "x") {
-            this.firstElementChild.src = "./assets/icon-x.svg";
-            turn = "o"
-            // change svg up top
-            document.querySelector(".x-svg").classList.remove("visible")
-            document.querySelector(".o-svg").classList.add("visible")
+for (let i = 0; i < cells.length; i++) {
+    cells[i].addEventListener("click", function () {
+        let row = Math.floor(i / 3);
+        let col = (i % 3);
+
+        // only write in a new value on an empty cell
+        if (board[row][col] == "") {
+            board[row][col] = turn;
+            if (turn == "x") {
+                this.firstElementChild.src = "./assets/icon-x.svg";
+                turn = "o"
+                // change svg up top
+                document.querySelector(".x-svg").classList.remove("visible")
+                document.querySelector(".o-svg").classList.add("visible")
+                // set value in 2d array
+
+            }
+            else {
+                this.firstElementChild.src = "./assets/icon-o.svg";
+                turn = "x"
+                // change svg up top
+                document.querySelector(".x-svg").classList.add("visible")
+                document.querySelector(".o-svg").classList.remove("visible")
+            }
         }
-        else {
-            this.firstElementChild.src = "./assets/icon-o.svg";
-            turn = "x"
-            // change svg up top
-            document.querySelector(".x-svg").classList.add("visible")
-            document.querySelector(".o-svg").classList.remove("visible")
-        }
+        console.log(board)
         // check for win conditions
     })
 }
@@ -71,4 +86,8 @@ function makeBoard(versus) {
             document.querySelector(".game-state-o-label").textContent = "(P1)"
         }
     }
+}
+
+function checkWin() {
+
 }
