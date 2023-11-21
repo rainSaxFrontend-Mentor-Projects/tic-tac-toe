@@ -1,5 +1,12 @@
 // by default set p1 mark as x
 var p1Mark = "x";
+var turn = "x";
+
+// blank all the cells which are by default set to x for valid html
+var cells = document.querySelectorAll(".board-cell");
+for (let cell of cells) {
+    cell.firstElementChild.src = "";
+}
 
 document.querySelector(".new-game-menu").classList.add("visible")
 
@@ -20,6 +27,20 @@ document.querySelector(".vs-player").addEventListener("click", function () {
     // console.log("starting vs player game with p1 as: " + p1Mark)
     makeBoard();
 })
+
+for (let cell of cells) {
+    cell.addEventListener("click", function () {
+        if (turn == "x") {
+            // console.log("It's x's turn")
+            this.firstElementChild.src = "./assets/icon-x.svg";
+            turn = "o"
+        }
+        else {
+            this.firstElementChild.src = "./assets/icon-o.svg";
+            turn = "x"
+        }
+    })
+}
 
 function makeBoard() {
     document.querySelector(".new-game-menu").classList.remove("visible")
