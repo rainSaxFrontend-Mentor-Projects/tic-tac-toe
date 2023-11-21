@@ -62,6 +62,7 @@ for (let i = 0; i < cells.length; i++) {
         let winner = checkWin();
         if (winner != "") {
             // set up results screen with winner
+            console.log("Winner: " + winner + "!")
         }
     })
 }

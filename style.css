@@ -277,15 +277,23 @@ main {
     letter-spacing: 0.07813rem;
 }
 
+/* make game over cover the screen to prevent interactivity with buttons */
 .game-over {
     display: none;
-    height: 14rem;
     width: 100%;
     position: absolute;
-    top: 25%;
+    top: 0%;
+    height: 100%;
     text-align: center;
     text-transform: uppercase;
-    background-color: var(--bg-semi-dark);
+}
+
+.game-result {
+    height: 14rem;
+    background: var(--bg-color);
+    position: absolute;
+    width: 100%;
+    top: 25%;
 }
 
 .game-result-icon-winner {
