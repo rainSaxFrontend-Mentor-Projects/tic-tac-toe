@@ -47,7 +47,6 @@ for (let i = 0; i < cells.length; i++) {
                 // change svg up top
                 document.querySelector(".x-svg").classList.remove("visible")
                 document.querySelector(".o-svg").classList.add("visible")
-                // set value in 2d array
 
             }
             else {
@@ -58,9 +57,64 @@ for (let i = 0; i < cells.length; i++) {
                 document.querySelector(".o-svg").classList.remove("visible")
             }
         }
-        console.log(board)
+
         // check for win conditions
+        let winner = checkWin();
+        if (winner != "") {
+            // set up results screen with winner
+        }
     })
+}
+
+function checkWin() {
+    // horizontal wins
+    for (let i = 0; i < board.length; i++) {
+        if (board[i][0] != "") {
+            let hval = board[i][0];
+            let count = 0;
+            for (let j = 1; j < board[i].length; j++) {
+                if (hval == board[i][j]) {
+                    count++;
+                }
+            }
+            if (count == 2) {
+                return hval;
+            }
+        }
+    }
+
+    // vertical wins
+    for (let i = 0; i < 3; i++) {
+        if (board[0][i] != "") {
+            // use first row values to compare, going down
+            let vval = board[0][i];
+            let count = 0;
+            for (let j = 1; j < 3; j++) {
+                // use board[j][i] to loop columns
+                if (board[j][i] == vval) {
+                    count++;
+                }
+            }
+            if (count == 2) {
+                return vval;
+            }
+        }
+    }
+
+    // diagonal wins
+    let dval1 = board[0][0]
+    if (dval1 != "") {
+        if (dval1 == board[1][1] && dval1 == board[2][2]) {
+            return dval1
+        }
+    }
+    let dval2 = board[0][2]
+    if (dval2 != "") {
+        if (dval2 == board[1][1] && dval2 == board[2][0]) {
+            return dval2
+        }
+    }
+    return ("")
 }
 
 function makeBoard(versus) {
@@ -88,6 +142,3 @@ function makeBoard(versus) {
     }
 }
 
-function checkWin() {
-
-}
