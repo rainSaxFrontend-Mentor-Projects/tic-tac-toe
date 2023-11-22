@@ -66,6 +66,16 @@ for (let i = 0; i < cells.length; i++) {
         if (winner != "") {
             // set up results screen with winner
             console.log("Winner: " + winner + "!")
+            // increment score counters
+            if (winner == "x") {
+                document.querySelector(".x-score").lastElementChild.textContent++
+            }
+            else if (winner == "o") {
+                document.querySelector(".o-score").lastElementChild.textContent++
+            }
+            else {
+                document.querySelector(".ties-score").lastElementChild.textContent++
+            }
         }
     })
 }
@@ -76,6 +86,7 @@ function checkWin() {
         pathD: "",
         bgClass: "",
     };
+    let tied = 1;
 
     // horizontal wins
     for (let i = 0; i < board.length; i++) {
@@ -151,6 +162,18 @@ function checkWin() {
 
             return dval2
         }
+    }
+
+    // check for a tie
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[i].length; j++) {
+            if (board[i][j] == "") {
+                tied = 0;
+            }
+        }
+    }
+    if (tied) {
+        return ("tied")
     }
     return ("")
 }

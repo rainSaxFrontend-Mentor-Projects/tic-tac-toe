@@ -310,6 +310,10 @@ main {
     top: 25%;
 }
 
+.game-result-message {
+    visibility: hidden;
+}
+
 .game-result-icon-winner {
     display: flex;
     align-items: center;
