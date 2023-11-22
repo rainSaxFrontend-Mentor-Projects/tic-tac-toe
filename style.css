@@ -240,13 +240,16 @@ main {
 
 }
 
-.winner-cell {
+.winner-cell-x {
     background-color: var(--bg-light-blue);
-    /* filter: invert(1); */
+}
+
+.winner-cell-o {
+    background-color: var(--bg-yellow);
 }
 
 .winner-img {
-    fill: var(--bg-color);
+    display: none;
 }
 
 .game-state {
