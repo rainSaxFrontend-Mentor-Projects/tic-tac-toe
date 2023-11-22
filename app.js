@@ -66,18 +66,62 @@ for (let i = 0; i < cells.length; i++) {
         if (winner != "") {
             // set up results screen with winner
             console.log("Winner: " + winner + "!")
-            // increment score counters
-            if (winner == "x") {
-                document.querySelector(".x-score").lastElementChild.textContent++
-            }
-            else if (winner == "o") {
-                document.querySelector(".o-score").lastElementChild.textContent++
-            }
-            else {
-                document.querySelector(".ties-score").lastElementChild.textContent++
-            }
+            gameOverState(winner)
         }
     })
+}
+
+function gameOverState(winner) {
+    // increment score counters
+    if (winner == "x") {
+        document.querySelector(".x-score").lastElementChild.textContent++
+    }
+    else if (winner == "o") {
+        document.querySelector(".o-score").lastElementChild.textContent++
+    }
+    else {
+        document.querySelector(".ties-score").lastElementChild.textContent++
+    }
+
+    // set up game over elements here
+    if (versus == "cpu") {
+        if (winner == p1Mark) {
+            document.querySelector(".game-result-message").textContent = "You Won!"
+        }
+        else {
+            document.querySelector(".game-result-message").textContent = "Oh no, you lost..."
+        }
+    }
+    else {
+        if (winner == p1Mark) {
+            document.querySelector(".game-result-message").textContent = "Player 1 Wins!"
+        }
+        else {
+            document.querySelector(".game-result-message").textContent = "Player 2 Wins!"
+        }
+    }
+
+    if (winner == "o") {
+        let image = document.createElement("img")
+        image.src = "./assets/icon-o.svg"
+        document.querySelector(".game-result-icon-winner").insertAdjacentElement("afterbegin", image)
+        document.querySelector(".game-result-main-text").style.color = "#F2B137"
+    }
+    else if (winner == "x") {
+        let image = document.createElement("img")
+        image.src = "./assets/icon-x.svg"
+        document.querySelector(".game-result-icon-winner").insertAdjacentElement("afterbegin", image)
+        document.querySelector(".game-result-main-text").style.color = "#31C3BD"
+    }
+
+    document.querySelector(".game-result-message").classList.add("visible")
+
+    if (winner == "tied") {
+        document.querySelector(".game-result-message").classList.remove("visible")
+        document.querySelector(".game-result-main-text").textContent = "Round Tied"
+        document.querySelector(".game-result-main-text").style.color = "#A8BFC9"
+    }
+    document.querySelector(".game-over").classList.add("visible")
 }
 
 function checkWin() {

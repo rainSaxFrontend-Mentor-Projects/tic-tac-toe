@@ -117,23 +117,17 @@
 
   <section class="game-over">
     <article class="game-result">
-      <h3 class="game-result-message result-player-lost">Oh no, you lost</h3>
-      <h3 class="game-result-message result-player-won">You won!</h3>
-      <h3 class="game-result-message result-multi">Player
-        <span class="game-result-multi-winner"><!-- 1/2 --></span>wins!
-      </h3>
+      <h3 class="game-result-message result-player-lost">NULL</h3>
 
       <div class="game-result-icon-winner">
-        <img src="./assets/icon-x.svg" alt="winner icon"><!-- x/o icon -->
-        <h1> takes the round</h1>
+        <!-- insert image here using js -->
+        <h1 class="game-result-main-text"> takes the round</h1>
       </div>
-      <h1 class="game-result-tied">Round tied</h1>
-      <h1 class="game-result-restart">Restart game?</h1>
 
-      <button class="game-result-quit-button">Quit</button>
-      <button class="game-result-next-round-button">Next round</button>
-      <button class="game-result-no-restart-button">No, cancel</button>
-      <button class="game-result-yes-restart-button">Yes, restart</button>
+      <div class="game-over-buttons">
+        <button class="game-result-button button-quit">Quit</button>
+        <button class="game-result-button button-next">Next Round</button>
+      </div>
     </article>
   </section>
   <script src="./app.js"></script>
