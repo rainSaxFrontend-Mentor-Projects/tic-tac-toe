@@ -10,9 +10,34 @@ var versus;
 
 // blank all the cells which are by default set to x for valid html
 var cells = document.querySelectorAll(".board-cell");
-for (let cell of cells) {
-    cell.firstElementChild.src = "";
+
+function clearBoard() {
+    for (let cell of cells) {
+        cell.firstElementChild.src = "";
+        if (cell.classList.contains("winner-cell-x")) {
+            cell.classList.remove("winner-cell-x")
+        }
+        if (cell.classList.contains("winner-cell-o")) {
+            cell.classList.remove("winner-cell-o")
+        }
+        if (cell.firstElementChild.classList.contains("winner-img")) {
+            cell.firstElementChild.classList.remove("winner-img")
+        }
+        if (cell.childElementCount > 1) {
+            cell.removeChild(cell.lastElementChild)
+        }
+        setTurn("o")
+    }
+    for (let i = 0; i < board.length; i++) {
+        for (let j = 0; j < board[i].length; j++) {
+            board[i][j] = ""
+        }
+    }
+    document.querySelector(".game-result-icon-winner").innerHTML = "<h1 class='game-result-main-text'> takes the round</h1>"
 }
+
+clearBoard()
+
 
 document.querySelector(".new-game-menu").classList.add("visible")
 
@@ -46,19 +71,11 @@ for (let i = 0; i < cells.length; i++) {
             board[row][col] = turn;
             if (turn == "x") {
                 this.firstElementChild.src = "./assets/icon-x.svg";
-                turn = "o"
-                // change svg up top
-                document.querySelector(".x-svg").classList.remove("visible")
-                document.querySelector(".o-svg").classList.add("visible")
-
             }
             else {
                 this.firstElementChild.src = "./assets/icon-o.svg";
-                turn = "x"
-                // change svg up top
-                document.querySelector(".x-svg").classList.add("visible")
-                document.querySelector(".o-svg").classList.remove("visible")
             }
+            setTurn(turn)
         }
 
         // check for win conditions
@@ -69,6 +86,21 @@ for (let i = 0; i < cells.length; i++) {
             gameOverState(winner)
         }
     })
+}
+
+function setTurn(pturn) {
+    if (pturn == "x") {
+        turn = "o"
+        // change svg up top
+        document.querySelector(".x-svg").classList.remove("visible")
+        document.querySelector(".o-svg").classList.add("visible")
+    }
+    else {
+        turn = "x"
+        // change svg up top
+        document.querySelector(".x-svg").classList.add("visible")
+        document.querySelector(".o-svg").classList.remove("visible")
+    }
 }
 
 function gameOverState(winner) {
@@ -123,6 +155,14 @@ function gameOverState(winner) {
     }
     document.querySelector(".game-over").classList.add("visible")
 }
+
+document.querySelector(".button-next").addEventListener("click", function () {
+    // remove game over screen
+    document.querySelector(".game-over").classList.remove("visible")
+
+    // clear the game board
+    clearBoard()
+})
 
 function checkWin() {
     // svg styling for row highlighting
