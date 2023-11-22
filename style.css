@@ -307,9 +307,10 @@ main {
     background: var(--bg-color);
     position: absolute;
     width: 100%;
-    top: 25%;
+    top: 21%;
     padding: 2.5rem;
     display: grid;
+    align-items: center;
     grid-gap: 1.5rem;
 }
 
@@ -371,5 +372,9 @@ main {
         height: 100vh;
         margin-top: 0;
         margin-bottom: 0;
+    }
+
+    .game-result {
+        top: 42%;
     }
 }

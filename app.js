@@ -11,6 +11,12 @@ var versus;
 // blank all the cells which are by default set to x for valid html
 var cells = document.querySelectorAll(".board-cell");
 
+function resetScores() {
+    document.querySelector(".x-score").lastElementChild.textContent = 0
+    document.querySelector(".o-score").lastElementChild.textContent = 0
+    document.querySelector(".ties-score").lastElementChild.textContent = 0
+}
+
 function clearBoard() {
     for (let cell of cells) {
         cell.firstElementChild.src = "";
@@ -111,7 +117,7 @@ function gameOverState(winner) {
     else if (winner == "o") {
         document.querySelector(".o-score").lastElementChild.textContent++
     }
-    else {
+    else if (winner == "tied") {
         document.querySelector(".ties-score").lastElementChild.textContent++
     }
 
@@ -153,6 +159,14 @@ function gameOverState(winner) {
         document.querySelector(".game-result-main-text").textContent = "Round Tied"
         document.querySelector(".game-result-main-text").style.color = "#A8BFC9"
     }
+
+    if (winner == "restart") {
+        document.querySelector(".game-result-message").classList.remove("visible")
+        document.querySelector(".game-result-main-text").textContent = "Restart Game?"
+        document.querySelector(".game-result-main-text").style.color = "#A8BFC9"
+        document.querySelector(".button-next").textContent = "Yes, Restart"
+        document.querySelector(".button-quit").textContent = "No, Cancel"
+    }
     document.querySelector(".game-over").classList.add("visible")
 }
 
@@ -162,6 +176,27 @@ document.querySelector(".button-next").addEventListener("click", function () {
 
     // clear the game board
     clearBoard()
+})
+
+document.querySelector(".restart").addEventListener("click", function () {
+    gameOverState("restart")
+})
+
+document.querySelector(".button-quit").addEventListener("click", function () {
+    if (this.textContent == "No, Cancel") {
+        document.querySelector(".game-over").classList.remove("visible")
+        document.querySelector(".button-next").textContent = "Next Round"
+        document.querySelector(".button-quit").textContent = "Quit"
+    }
+    else {
+        clearBoard()
+        resetScores()
+        document.querySelector(".button-next").textContent = "Next Round"
+        document.querySelector(".button-quit").textContent = "Quit"
+        document.querySelector(".game-over").classList.remove("visible")
+        document.querySelector(".in-game").classList.remove("visible")
+        document.querySelector(".new-game-menu").classList.add("visible")
+    }
 })
 
 function checkWin() {
