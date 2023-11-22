@@ -82,6 +82,17 @@ function checkWin() {
                 }
             }
             if (count == 2) {
+                // style the row
+                console.log(cells)
+                console.log("row: " + i)
+                // calculate starting index in cells for styling
+                let start = (i * 3)
+                console.log(start)
+                for (let i = start; i < (start + 3); i++) {
+                    cells[i].firstElementChild.src = "./assets/icon-x-outline.svg"
+                    // cells[i].classList.add("winner-cell")
+                    cells[i].firstElementChild.classList.add("winner-img")
+                }
                 return hval;
             }
         }

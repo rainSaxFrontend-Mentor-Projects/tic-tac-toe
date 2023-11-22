@@ -240,6 +240,15 @@ main {
 
 }
 
+.winner-cell {
+    background-color: var(--bg-light-blue);
+    /* filter: invert(1); */
+}
+
+.winner-img {
+    fill: var(--bg-color);
+}
+
 .game-state {
     display: flex;
     justify-content: space-between;
