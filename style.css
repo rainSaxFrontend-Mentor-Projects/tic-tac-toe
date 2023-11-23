@@ -47,8 +47,9 @@ h6 {
 main {
     padding: 1.5rem;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    height: 100vh;
 }
 
 .dimmed {
