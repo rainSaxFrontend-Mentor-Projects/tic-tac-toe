@@ -40,10 +40,10 @@ function clearBoard() {
         }
     }
     document.querySelector(".game-result-icon-winner").innerHTML = "<h1 class='game-result-main-text'> takes the round</h1>"
+    if (versus == "cpu" && p1Mark != "x") {
+        generateMoveRand()
+    }
 }
-
-clearBoard()
-
 
 document.querySelector(".new-game-menu").classList.add("visible")
 
@@ -75,7 +75,7 @@ for (let i = 0; i < cells.length; i++) {
             makeMove(i)
         }
         if (versus == "cpu" && turn != p1Mark && !document.querySelector(".game-over").classList.contains("visible")) {
-            generateMove()
+            generateMoveRand()
         }
     })
 
@@ -126,12 +126,11 @@ function makeMove(index) {
     }
 }
 
-function generateMove() {
+function generateMoveRand() {
     let row;
     let col;
     let index;
 
-    // TODO add some clever logic
     do {
         index = Math.floor(Math.random() * 9);
         row = Math.floor(index / 3);
@@ -252,6 +251,11 @@ document.querySelector(".button-next").addEventListener("click", function () {
         this.textContent = "Next Round"
         document.querySelector(".button-quit").textContent = "Quit"
     }
+
+    // if we start on x with cpu, have it make the 1st move
+    // if (versus == "cpu" && p1Mark != "x") {
+    //     generateMoveRand()
+    // }
 })
 
 document.querySelector(".restart").addEventListener("click", function () {
@@ -413,6 +417,7 @@ function makeBoard(versus) {
         if (p1Mark == "o") {
             document.querySelector(".game-state-x-label").textContent = "(CPU)"
             document.querySelector(".game-state-o-label").textContent = "(YOU)"
+            generateMoveRand()
         }
     }
     else {
@@ -426,5 +431,6 @@ function makeBoard(versus) {
             document.querySelector(".game-state-o-label").textContent = "(P1)"
         }
     }
+    clearBoard()
 }
 
