@@ -67,29 +67,15 @@ for (let newGame of document.querySelectorAll(".new")) {
     })
 }
 
+
 for (let i = 0; i < cells.length; i++) {
+    // if (versus == "cpu" || versus == "player") {
     cells[i].addEventListener("click", function () {
-        let row = Math.floor(i / 3);
-        let col = (i % 3);
-
-        // only write in a new value on an empty cell
-        if (board[row][col] == "") {
-            board[row][col] = turn;
-            if (turn == "x") {
-                this.firstElementChild.src = "./assets/icon-x.svg";
-            }
-            else {
-                this.firstElementChild.src = "./assets/icon-o.svg";
-            }
-            setTurn(turn)
+        if ((versus == "cpu" && turn == p1Mark) || versus == "player") {
+            makeMove(i)
         }
-
-        // check for win conditions
-        let winner = checkWin();
-        if (winner != "") {
-            // set up results screen with winner
-            console.log("Winner: " + winner + "!")
-            gameOverState(winner)
+        if (versus == "cpu" && turn != p1Mark && !document.querySelector(".game-over").classList.contains("visible")) {
+            generateMove()
         }
     })
 
@@ -113,6 +99,65 @@ for (let i = 0; i < cells.length; i++) {
             this.firstElementChild.src = ""
         }
     })
+}
+
+function makeMove(index) {
+    let row = Math.floor(index / 3);
+    let col = (index % 3);
+
+    // only write in a new value on an empty cell
+    if (board[row][col] == "") {
+        board[row][col] = turn;
+        if (turn == "x") {
+            cells[index].firstElementChild.src = "./assets/icon-x.svg";
+        }
+        else {
+            cells[index].firstElementChild.src = "./assets/icon-o.svg";
+        }
+        setTurn(turn)
+    }
+
+    // check for win conditions
+    let winner = checkWin();
+    if (winner != "") {
+        // set up results screen with winner
+        console.log("Winner: " + winner + "!")
+        gameOverState(winner)
+    }
+}
+
+function generateMove() {
+    let row;
+    let col;
+    let index;
+
+    // TODO add some clever logic
+    do {
+        index = Math.floor(Math.random() * 9);
+        row = Math.floor(index / 3);
+        col = (index % 3);
+        console.log("row:" + row + " col: " + col)
+    } while (board[row][col] != "")
+
+    // only write in a new value on an empty cell
+    if (board[row][col] == "") {
+        board[row][col] = turn;
+        if (turn == "x") {
+            cells[index].firstElementChild.src = "./assets/icon-x.svg";
+        }
+        else {
+            cells[index].firstElementChild.src = "./assets/icon-o.svg";
+        }
+        setTurn(turn)
+    }
+
+    // check for win conditions
+    let winner = checkWin();
+    if (winner != "") {
+        // set up results screen with winner
+        console.log("Winner: " + winner + "!")
+        gameOverState(winner)
+    }
 }
 
 function setTurn(pturn) {
