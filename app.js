@@ -202,6 +202,11 @@ document.querySelector(".button-next").addEventListener("click", function () {
 
     // clear the game board
     clearBoard()
+
+    if (this.textContent == "Yes, Restart") {
+        this.textContent = "Next Round"
+        document.querySelector(".button-quit").textContent = "Quit"
+    }
 })
 
 document.querySelector(".restart").addEventListener("click", function () {
@@ -212,13 +217,13 @@ document.querySelector(".button-quit").addEventListener("click", function () {
     if (this.textContent == "No, Cancel") {
         document.querySelector(".game-over").classList.remove("visible")
         document.querySelector(".button-next").textContent = "Next Round"
-        document.querySelector(".button-quit").textContent = "Quit"
+        this.textContent = "Quit"
     }
     else {
         clearBoard()
         resetScores()
         document.querySelector(".button-next").textContent = "Next Round"
-        document.querySelector(".button-quit").textContent = "Quit"
+        this.textContent = "Quit"
         document.querySelector(".game-over").classList.remove("visible")
         document.querySelector(".in-game").classList.remove("visible")
         document.querySelector(".new-game-menu").classList.add("visible")
