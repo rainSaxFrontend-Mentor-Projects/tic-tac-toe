@@ -92,6 +92,27 @@ for (let i = 0; i < cells.length; i++) {
             gameOverState(winner)
         }
     })
+
+    cells[i].addEventListener("mouseenter", function () {
+        let row = Math.floor(i / 3)
+        let col = i % 3
+        if (board[row][col] == "") {
+            if (turn == "x") {
+                this.firstElementChild.src = "./assets/icon-x-outline.svg"
+            }
+            else {
+                this.firstElementChild.src = "./assets/icon-o-outline.svg"
+            }
+        }
+    })
+
+    cells[i].addEventListener("mouseleave", function () {
+        let row = Math.floor(i / 3)
+        let col = i % 3
+        if (board[row][col] == "") {
+            this.firstElementChild.src = ""
+        }
+    })
 }
 
 function setTurn(pturn) {

@@ -63,7 +63,8 @@
         <div class="game-xo">
           <img src="./assets/logo.svg" alt="x and o logo">
         </div>
-        <div class="game-turn"><span class="curr-turn-icon"><!-- x/o icon -->
+        <div class="game-turn">
+          <span class="curr-turn-icon"><!-- x/o icon -->
             <svg class="x-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
               fill="none">
               <path fill-rule="evenodd" clip-rule="evenodd"
@@ -76,8 +77,8 @@
                 d="M20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20C15.5228 20 20 15.5228 20 10ZM5.92593 10C5.92593 7.74995 7.74995 5.92593 10 5.92593C12.25 5.92593 14.0741 7.74995 14.0741 10C14.0741 12.25 12.25 14.0741 10 14.0741C7.74995 14.0741 5.92593 12.25 5.92593 10Z"
                 fill="#A8BFC9" />
             </svg>
+            <p>turn</p>
           </span>
-          <p>turn</p>
         </div>
         <button class="restart"><img src="./assets/icon-restart.svg" alt="restart symbol"></button>
       </header>
@@ -95,9 +96,11 @@
       </article>
 
       <article class="game-state">
-        <div class="score x-score">x
-          <!-- label will be either (You), (CPU), P1 or P2 -->
-          <span class="game-state-x-label">(You)</span>
+        <div class="score x-score">
+          <p>x
+            <!-- label will be either (You), (CPU), P1 or P2 -->
+            <span class="game-state-x-label">(You)</span>
+          </p>
           <p class="game-state-x-score">0<!-- Your score --></p>
         </div>
 
@@ -105,9 +108,11 @@
           <p class="game-state-ties-score">0<!-- Ties score --></p>
         </div>
 
-        <div class="score o-score">o
-          <!-- label will be either (You), (CPU), P1 or P2 -->
-          <span class="game-state-o-label">(CPU)</span>
+        <div class="score o-score">
+          <p>o
+            <!-- label will be either (You), (CPU), P1 or P2 -->
+            <span class="game-state-o-label">(CPU)</span>
+          </p>
           <p class="game-state-o-score">0<!-- CPU score --></p>
         </div>
       </article>
