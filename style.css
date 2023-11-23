@@ -49,10 +49,11 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* below for darkening when results screen comes up */
-    /* height: 100vh; */
-    /* background: #000; */
-    /* opacity: .5; */
+}
+
+.dimmed {
+    background-color: #000;
+    opacity: .5;
 }
 
 .new-game-menu {

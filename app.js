@@ -110,6 +110,9 @@ function setTurn(pturn) {
 }
 
 function gameOverState(winner) {
+    //dim the area behind
+    document.querySelector("main").classList.add("dimmed")
+
     // increment score counters
     if (winner == "x") {
         document.querySelector(".x-score").lastElementChild.textContent++
@@ -171,6 +174,8 @@ function gameOverState(winner) {
 }
 
 document.querySelector(".button-next").addEventListener("click", function () {
+    document.querySelector("main").classList.remove("dimmed")
+
     // remove game over screen
     document.querySelector(".game-over").classList.remove("visible")
 
@@ -197,6 +202,8 @@ document.querySelector(".button-quit").addEventListener("click", function () {
         document.querySelector(".in-game").classList.remove("visible")
         document.querySelector(".new-game-menu").classList.add("visible")
     }
+    document.querySelector("main").classList.remove("dimmed")
+
 })
 
 function checkWin() {
