@@ -2,6 +2,7 @@
     --bg-color: #1A2A33;
     --bg-semi-dark: #1F3641;
     --bg-silver: #A8BFC9;
+    --bg-silver-hover: #DBE8ED;
     --bg-yellow: #F2B137;
     --bg-yellow-hover: #FFC860;
     --bg-light-blue: #31C3BD;
@@ -32,6 +33,10 @@ img {
 
 button {
     font: inherit;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 p,
@@ -155,7 +160,6 @@ main {
 
 .new.vs-cpu:hover {
     background-color: var(--bg-yellow-hover);
-    cursor: pointer;
 }
 
 .new.vs-player {
@@ -165,7 +169,6 @@ main {
 
 .new.vs-player:hover {
     background-color: var(--bg-light-blue-hover);
-    cursor: pointer;
 }
 
 .in-game {
@@ -227,6 +230,10 @@ main {
     justify-content: center;
 }
 
+.restart:hover {
+    background-color: var(--bg-silver-hover);
+}
+
 .restart>img {
     width: 65%;
 }
@@ -245,10 +252,6 @@ main {
     border: none;
     border-radius: 0.625rem;
     box-shadow: 0px -8px 0px 0px #10212A inset;
-}
-
-.board-cell:hover {
-    cursor: pointer;
 }
 
 .winner-cell-x {
@@ -372,9 +375,17 @@ main {
     box-shadow: 0px -4px 0px 0px #6B8997 inset;
 }
 
+.button-quit:hover {
+    background-color: var(--bg-silver-hover);
+}
+
 .button-next {
     background-color: var(--bg-yellow);
     box-shadow: 0px -4px 0px 0px #CC8B13 inset;
+}
+
+.button-next:hover {
+    background-color: var(--bg-yellow-hover);
 }
 
 .visible {
