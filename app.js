@@ -486,6 +486,8 @@ function AImakeChainCol(coords) {
     return 0;
 }
 
+// TODO - add makeChainDiag
+// TODO - separate AI functions into their own module
 
 function generateMoveClever() {
     let coords = {
