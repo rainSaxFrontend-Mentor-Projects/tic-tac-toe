@@ -75,7 +75,8 @@ for (let i = 0; i < cells.length; i++) {
             makeMove(i)
         }
         if (versus == "cpu" && turn != p1Mark && !document.querySelector(".game-over").classList.contains("visible")) {
-            generateMoveRand()
+            // generateMoveRand()
+            generateMoveClever()
         }
     })
 
@@ -141,6 +142,296 @@ function generateMoveRand() {
     // only write in a new value on an empty cell
     if (board[row][col] == "") {
         board[row][col] = turn;
+        if (turn == "x") {
+            cells[index].firstElementChild.src = "./assets/icon-x.svg";
+        }
+        else {
+            cells[index].firstElementChild.src = "./assets/icon-o.svg";
+        }
+        setTurn(turn)
+    }
+
+    // check for win conditions
+    let winner = checkWin();
+    if (winner != "") {
+        // set up results screen with winner
+        console.log("Winner: " + winner + "!")
+        gameOverState(winner)
+    }
+}
+
+function AIcheckBlockRows(coords) {
+    for (let i = 0; i < board.length; i++) {
+        // object to hold coords once a blank spot is found
+        let blank = {
+            row: 0,
+            col: 0
+        };
+
+        // bool - blank spot or not
+        let blankBool = 0;
+
+        // count of opponent marks
+        let count = 0;
+
+        for (let j = 0; j < board[i].length; j++) {
+            if (board[i][j] != turn && board[i][j] != "") {
+                count++;
+                console.log("count: " + count)
+            }
+            if (board[i][j] == "") {
+                blank.row = i;
+                blank.col = j;
+                blankBool = 1;
+            }
+            if (blankBool == 1 && count == 2) {
+                coords.row = blank.row;
+                coords.col = blank.col;
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+function AIcheckFillRows(coords) {
+    for (let i = 0; i < board.length; i++) {
+        // object to hold coords once a blank spot is found
+        let blank = {
+            row: 0,
+            col: 0
+        };
+
+        // bool - blank spot or not
+        let blankBool = 0;
+
+        // count of opponent marks
+        let count = 0;
+
+        for (let j = 0; j < board[i].length; j++) {
+            if (board[i][j] == turn) {
+                count++;
+                console.log("count: " + count)
+            }
+            if (board[i][j] == "") {
+                blank.row = i;
+                blank.col = j;
+                blankBool = 1;
+            }
+            if (blankBool == 1 && count == 2) {
+                coords.row = blank.row;
+                coords.col = blank.col;
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+function AIcheckBlockCols(coords) {
+    for (let i = 0; i < board.length; i++) {
+        // object to hold coords once a blank spot is found
+        let blank = {
+            row: 0,
+            col: 0
+        };
+
+        // bool - blank spot or not
+        let blankBool = 0;
+
+        // count of opponent marks
+        let count = 0;
+
+        for (let j = 0; j < board[i].length; j++) {
+            if (board[j][i] != turn && board[j][i] != "") {
+                count++;
+                console.log("count: " + count)
+            }
+            if (board[j][i] == "") {
+                blank.row = j;
+                blank.col = i;
+                blankBool = 1;
+            }
+            if (blankBool == 1 && count == 2) {
+                coords.row = blank.row;
+                coords.col = blank.col;
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+function AIcheckFillCols(coords) {
+    for (let i = 0; i < board.length; i++) {
+        // object to hold coords once a blank spot is found
+        let blank = {
+            row: 0,
+            col: 0
+        };
+
+        // bool - blank spot or not
+        let blankBool = 0;
+
+        // count of opponent marks
+        let count = 0;
+
+        for (let j = 0; j < board[i].length; j++) {
+            if (board[j][i] == turn) {
+                count++;
+                console.log("count: " + count)
+            }
+            if (board[j][i] == "") {
+                blank.row = j;
+                blank.col = i;
+                blankBool = 1;
+            }
+            if (blankBool == 1 && count == 2) {
+                coords.row = blank.row;
+                coords.col = blank.col;
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+function AIcheckBlockDiags(coords) {
+    // bottom r
+    if ((board[0][0] != turn && board[0][0] != "") &&
+        (board[1][1] != turn && board[1][1] != "") && board[2][2] == "") {
+        coords.row = 2;
+        coords.col = 2;
+        return 1;
+    }
+    // top r
+    if ((board[2][0] != turn && board[2][0] != "") &&
+        (board[1][1] != turn && board[1][1] != "") && board[0][2] == "") {
+        coords.row = 0;
+        coords.col = 2;
+        return 1;
+    }
+    // bottom l
+    if ((board[0][2] != turn && board[0][2] != "") &&
+        (board[1][1] != turn && board[1][1] != "") && board[2][0] == "") {
+        coords.row = 2;
+        coords.col = 0;
+        return 1;
+    }
+    // top l
+    if ((board[2][2] != turn && board[2][2] != "") &&
+        (board[1][1] != turn && board[1][1] != "") && board[0][0] == "") {
+        coords.row = 0;
+        coords.col = 0;
+        return 1;
+    }
+    // center1
+    if ((board[2][2] != turn && board[2][2] != "") &&
+        (board[0][0] != turn && board[0][0] != "") && board[1][1] == "") {
+        coords.row = 1;
+        coords.col = 1;
+        return 1;
+    }
+    // center2
+    if ((board[0][2] != turn && board[0][2] != "") &&
+        (board[2][0] != turn && board[2][0] != "") && board[1][1] == "") {
+        coords.row = 1;
+        coords.col = 1;
+        return 1;
+    }
+    return 0;
+}
+
+function AIcheckFillDiags(coords) {
+    // bottom r
+    if (board[0][0] == turn &&
+        board[1][1] == turn && board[2][2] == "") {
+        coords.row = 2;
+        coords.col = 2;
+        return 1;
+    }
+    // top r
+    if (board[2][0] == turn &&
+        board[1][1] == turn && board[0][2] == "") {
+        coords.row = 0;
+        coords.col = 2;
+        return 1;
+    }
+    // bottom l
+    if (board[0][2] == turn &&
+        board[1][1] == turn && board[2][0] == "") {
+        coords.row = 2;
+        coords.col = 0;
+        return 1;
+    }
+    // top l
+    if (board[2][2] == turn &&
+        board[1][1] == turn && board[0][0] == "") {
+        coords.row = 0;
+        coords.col = 0;
+        return 1;
+    }
+    // center1
+    if (board[2][2] == turn &&
+        board[0][0] == turn && board[1][1] == "") {
+        coords.row = 1;
+        coords.col = 1;
+        return 1;
+    }
+    // center2
+    if (board[0][2] == turn &&
+        board[2][0] == turn && board[1][1] == "") {
+        coords.row = 1;
+        coords.col = 1;
+        return 1;
+    }
+
+    return 0;
+}
+
+
+function generateMoveClever() {
+    let coords = {
+        row: 0,
+        col: 0,
+    };
+
+    let index;
+
+    // initially set row and col to a random value for an unfilled cell
+    do {
+        coords.row = Math.floor(Math.random() * 3);
+        coords.col = Math.floor(Math.random() * 3);
+        // console.log("row:" + row + " col: " + col)
+    } while (board[coords.row][coords.col] != "")
+
+    // check rows make 3
+    if (AIcheckFillRows(coords) == 0) {
+        // check columns make 3
+        if (AIcheckFillCols(coords) == 0) {
+            // check diagonals make 3
+            if (AIcheckFillDiags(coords) == 0) {
+                // check block rows
+                if (AIcheckBlockRows(coords) == 0) {
+                    // check block cols
+                    if (AIcheckBlockCols(coords) == 0) {
+                        // check block diags
+                        if (AIcheckBlockDiags(coords) == 0) {
+                            // try and build a chain
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    index = (coords.row * 3) + coords.col
+
+    console.log("row:" + coords.row + " col: " + coords.col + " index: " + index)
+
+    // only write in a new value on an empty cell
+    if (board[coords.row][coords.col] == "") {
+        board[coords.row][coords.col] = turn;
         if (turn == "x") {
             cells[index].firstElementChild.src = "./assets/icon-x.svg";
         }
@@ -251,11 +542,6 @@ document.querySelector(".button-next").addEventListener("click", function () {
         this.textContent = "Next Round"
         document.querySelector(".button-quit").textContent = "Quit"
     }
-
-    // if we start on x with cpu, have it make the 1st move
-    // if (versus == "cpu" && p1Mark != "x") {
-    //     generateMoveRand()
-    // }
 })
 
 document.querySelector(".restart").addEventListener("click", function () {
