@@ -389,6 +389,103 @@ function AIcheckFillDiags(coords) {
     return 0;
 }
 
+function AImakeChain(coords) {
+    let blank = {
+        coord1: [-1, -1],
+        coord2: [-1, -1]
+    };
+    let blankBool;
+    let icon;
+    // look for row / col / diag with 2 free spaces & icon of turn
+    for (let i = 0; i < board.length; i++) {
+        blankBool = 0;
+        icon = 0;
+        blank.coord1[0] = -1
+        blank.coord1[1] = -1
+        blank.coord2[0] = -1
+        blank.coord2[1] = -1
+        for (let j = 0; j < board[i].length; j++) {
+            if (board[i][j] == "") {
+                blankBool++;
+                if (blank.coord1[0] == -1) {
+                    blank.coord1[0] = i;
+                    blank.coord1[1] = j;
+                }
+                else {
+                    blank.coord2[0] = i;
+                    blank.coord2[1] = j;
+                }
+            }
+            if (board[i][j] == turn) {
+                icon = 1;
+                console.log("turn: " + turn)
+            }
+        }
+        if (blankBool == 2 && icon == 1) {
+            let blankChoice = Math.floor(Math.random() * 2)
+            if (blankChoice == 0) {
+                coords.row = blank.coord1[0];
+                coords.col = blank.coord1[1];
+            }
+            else {
+                coords.row = blank.coord2[0];
+                coords.col = blank.coord2[1];
+            }
+            console.log("setting chain row " + "turn: " + turn)
+            return 1;
+        }
+    }
+    return 0;
+}
+
+function AImakeChainCol(coords) {
+    let blank = {
+        coord1: [-1, -1],
+        coord2: [-1, -1]
+    };
+    let blankBool;
+    let icon;
+    // look for row / col / diag with 2 free spaces & icon of turn
+    for (let i = 0; i < board.length; i++) {
+        blankBool = 0;
+        icon = 0;
+        blank.coord1[0] = -1
+        blank.coord1[1] = -1
+        blank.coord2[0] = -1
+        blank.coord2[1] = -1
+        for (let j = 0; j < board[i].length; j++) {
+            if (board[j][i] == "") {
+                blankBool++;
+                if (blank.coord1[0] == -1) {
+                    blank.coord1[0] = j;
+                    blank.coord1[1] = i;
+                }
+                else {
+                    blank.coord2[0] = j;
+                    blank.coord2[1] = i;
+                }
+            }
+            if (board[j][i] == turn) {
+                icon = 1;
+            }
+        }
+        if (blankBool == 2 && icon == 1) {
+            let blankChoice = Math.floor(Math.random() * 2)
+            if (blankChoice == 0) {
+                coords.row = blank.coord1[0];
+                coords.col = blank.coord1[1];
+            }
+            else {
+                coords.row = blank.coord2[0];
+                coords.col = blank.coord2[1];
+            }
+            console.log("setting chain col")
+            return 1;
+        }
+    }
+    return 0;
+}
+
 
 function generateMoveClever() {
     let coords = {
@@ -418,6 +515,9 @@ function generateMoveClever() {
                         // check block diags
                         if (AIcheckBlockDiags(coords) == 0) {
                             // try and build a chain
+                            if (AImakeChain(coords) == 0) {
+                                AImakeChainCol(coords)
+                            }
                         }
                     }
                 }
