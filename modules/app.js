@@ -15,7 +15,7 @@ function resetScores() {
 
 function clearBoard() {
     for (let cell of cells) {
-        cell.firstElementChild.src = "";
+        cell.firstElementChild.style.opacity = 0;
         if (cell.classList.contains("winner-cell-x")) {
             cell.classList.remove("winner-cell-x")
         }
@@ -84,6 +84,7 @@ for (let i = 0; i < cells.length; i++) {
             else {
                 this.firstElementChild.src = "./assets/icon-o-outline.svg"
             }
+            this.firstElementChild.style.opacity = "1"
         }
     })
 
@@ -91,7 +92,7 @@ for (let i = 0; i < cells.length; i++) {
         let row = Math.floor(i / 3)
         let col = i % 3
         if (board[row][col] == "") {
-            this.firstElementChild.src = ""
+            this.firstElementChild.style.opacity = "0"
         }
     })
 }
@@ -109,6 +110,7 @@ function makeMove(index) {
         else {
             cells[index].firstElementChild.src = "./assets/icon-o.svg";
         }
+        cells[index].firstElementChild.style.opacity = "1"
         setTurn(turn)
     }
 
@@ -202,6 +204,7 @@ function generateMoveClever() {
         else {
             cells[index].firstElementChild.src = "./assets/icon-o.svg";
         }
+        cells[index].firstElementChild.style.opacity = "1"
         setTurn(turn)
     }
 
