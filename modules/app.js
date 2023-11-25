@@ -37,7 +37,7 @@ function clearBoard() {
     }
     document.querySelector(".game-result-icon-winner").innerHTML = "<h1 class='game-result-main-text'> takes the round</h1>"
     if (versus == "cpu" && p1Mark != "x") {
-        generateMoveRand()
+        generateMoveClever()
     }
 }
 
