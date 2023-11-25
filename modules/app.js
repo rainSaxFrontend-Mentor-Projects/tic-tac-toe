@@ -1,4 +1,4 @@
-import { turn, changeTurn, board, AIcheckBlockRows, AIcheckFillRows, AIcheckBlockCols, AIcheckFillCols, AIcheckBlockDiags, AIcheckFillDiags, AImakeChain, AImakeChainCol } from "./modules/AI.js";
+import { turn, changeTurn, board, AIcheckBlockRows, AIcheckFillRows, AIcheckBlockCols, AIcheckFillCols, AIcheckBlockDiags, AIcheckFillDiags, AImakeChain, AImakeChainCol } from "./AI.js";
 
 // by default set p1 mark as x
 var p1Mark = "x";
@@ -65,13 +65,11 @@ for (let newGame of document.querySelectorAll(".new")) {
 
 
 for (let i = 0; i < cells.length; i++) {
-    // if (versus == "cpu" || versus == "player") {
     cells[i].addEventListener("click", function () {
         if ((versus == "cpu" && turn == p1Mark) || versus == "player") {
             makeMove(i)
         }
         if (versus == "cpu" && turn != p1Mark && !document.querySelector(".game-over").classList.contains("visible")) {
-            // generateMoveRand()
             generateMoveClever()
         }
     })
@@ -118,7 +116,6 @@ function makeMove(index) {
     let winner = checkWin();
     if (winner != "") {
         // set up results screen with winner
-        console.log("Winner: " + winner + "!")
         gameOverState(winner)
     }
 }
@@ -132,7 +129,6 @@ function generateMoveRand() {
         index = Math.floor(Math.random() * 9);
         row = Math.floor(index / 3);
         col = (index % 3);
-        console.log("row:" + row + " col: " + col)
     } while (board[row][col] != "")
 
     // only write in a new value on an empty cell
@@ -151,7 +147,6 @@ function generateMoveRand() {
     let winner = checkWin();
     if (winner != "") {
         // set up results screen with winner
-        console.log("Winner: " + winner + "!")
         gameOverState(winner)
     }
 }
@@ -171,7 +166,6 @@ function generateMoveClever() {
     do {
         coords.row = Math.floor(Math.random() * 3);
         coords.col = Math.floor(Math.random() * 3);
-        // console.log("row:" + row + " col: " + col)
     } while (board[coords.row][coords.col] != "")
 
     // check rows make 3
@@ -199,8 +193,6 @@ function generateMoveClever() {
 
     index = (coords.row * 3) + coords.col
 
-    console.log("row:" + coords.row + " col: " + coords.col + " index: " + index)
-
     // only write in a new value on an empty cell
     if (board[coords.row][coords.col] == "") {
         board[coords.row][coords.col] = turn;
@@ -217,7 +209,6 @@ function generateMoveClever() {
     let winner = checkWin();
     if (winner != "") {
         // set up results screen with winner
-        console.log("Winner: " + winner + "!")
         gameOverState(winner)
     }
 }
@@ -358,12 +349,8 @@ function checkWin() {
                 }
             }
             if (count == 2) {
-                // style the row
-                console.log(cells)
-                console.log("row: " + i)
                 // calculate starting index in cells for styling
                 let start = (i * 3)
-                console.log(start)
 
                 setPathandBgClass(hval, svgObj)
                 colorCells(start, 1, svgObj)
@@ -386,9 +373,6 @@ function checkWin() {
                 }
             }
             if (count == 2) {
-                console.log("col: " + i)
-                console.log(cells)
-
                 // winners are i, (i + 3), (i + 3 + 3)
                 let start = i
                 setPathandBgClass(vval, svgObj)

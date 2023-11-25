@@ -28,7 +28,6 @@ export function AIcheckBlockRows(coords) {
         for (let j = 0; j < board[i].length; j++) {
             if (board[i][j] != turn && board[i][j] != "") {
                 count++;
-                console.log("count: " + count)
             }
             if (board[i][j] == "") {
                 blank.row = i;
@@ -62,7 +61,6 @@ export function AIcheckFillRows(coords) {
         for (let j = 0; j < board[i].length; j++) {
             if (board[i][j] == turn) {
                 count++;
-                console.log("count: " + count)
             }
             if (board[i][j] == "") {
                 blank.row = i;
@@ -96,7 +94,6 @@ export function AIcheckBlockCols(coords) {
         for (let j = 0; j < board[i].length; j++) {
             if (board[j][i] != turn && board[j][i] != "") {
                 count++;
-                console.log("count: " + count)
             }
             if (board[j][i] == "") {
                 blank.row = j;
@@ -130,7 +127,6 @@ export function AIcheckFillCols(coords) {
         for (let j = 0; j < board[i].length; j++) {
             if (board[j][i] == turn) {
                 count++;
-                console.log("count: " + count)
             }
             if (board[j][i] == "") {
                 blank.row = j;
@@ -269,7 +265,6 @@ export function AImakeChain(coords) {
             }
             if (board[i][j] == turn) {
                 icon = 1;
-                console.log("turn: " + turn)
             }
         }
         if (blankBool == 2 && icon == 1) {
@@ -282,7 +277,6 @@ export function AImakeChain(coords) {
                 coords.row = blank.coord2[0];
                 coords.col = blank.coord2[1];
             }
-            console.log("setting chain row " + "turn: " + turn)
             return 1;
         }
     }
@@ -330,7 +324,6 @@ export function AImakeChainCol(coords) {
                 coords.row = blank.coord2[0];
                 coords.col = blank.coord2[1];
             }
-            console.log("setting chain col")
             return 1;
         }
     }
